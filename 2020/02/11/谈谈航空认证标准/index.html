@@ -20,14 +20,13 @@
     var CONFIG = {"hostname":"sssnow.github.io","root":"/SSSnow.github.io/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":"enable","color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"path":"search.xml","field":"post","format":"html","limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="谁看见过风？我和你，都不曾看见过。但是当树叶颤动之时，就代表风正吹拂而过。风啊，请展开羽翼，将它送达你的身边!     引言 ​	这里主要讨论DO-178B, DO-254标准，解释其背景，意义，以及是怎么工作的。">
+  <meta name="description" content="谁看见过风？我和你，都不曾看见过。但是当树叶颤动之时，就代表风正吹拂而过。风啊，请展开羽翼，将它送达你的身边!    引言 ​	这里主要讨论DO-178B, DO-254标准，解释其背景，意义，以及是怎么工作的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="谈谈航空认证标准(Ⅰ)">
 <meta property="og:url" content="https://sssnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/index.html">
 <meta property="og:site_name" content="古月的江湖">
-<meta property="og:description" content="谁看见过风？我和你，都不曾看见过。但是当树叶颤动之时，就代表风正吹拂而过。风啊，请展开羽翼，将它送达你的身边!     引言 ​	这里主要讨论DO-178B, DO-254标准，解释其背景，意义，以及是怎么工作的。">
+<meta property="og:description" content="谁看见过风？我和你，都不曾看见过。但是当树叶颤动之时，就代表风正吹拂而过。风啊，请展开羽翼，将它送达你的身边!    引言 ​	这里主要讨论DO-178B, DO-254标准，解释其背景，意义，以及是怎么工作的。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sssnow.github.io/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/header.jpg">
 <meta property="og:image" content="https://sssnow.github.io/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/header.jpg">
 <meta property="og:image" content="https://sssnow.github.io/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/178BTimeAxis.png">
 <meta property="og:image" content="https://sssnow.github.io/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/178CTimeAxis.png">
@@ -122,7 +121,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/SSSnow.github.io/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">2</span></a>
+    <a href="/SSSnow.github.io/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">6</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -228,6 +227,20 @@
             </span>
 
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -242,7 +255,6 @@
 <p>谁看见过风？我和你，都不曾看见过。但是当树叶颤动之时，就代表风正吹拂而过。风啊，请展开羽翼，将它送达你的身边!</p>
 </blockquote>
 <p><img src="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/header.jpg" alt></p>
-<img src="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/header.jpg" class title="header">
 <h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
 <p>​	这里主要讨论DO-178B, DO-254标准，解释其背景，意义，以及是怎么工作的。</p>
 <a id="more"></a>
@@ -304,7 +316,7 @@
       <i class="fa fa-chevron-left"></i> Hello World
     </a></div>
       <div class="post-nav-item">
-    <a href="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86-1_bp/" rel="next" title="谈谈航空认证标准(Ⅱ)">
+    <a href="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86-1/" rel="next" title="谈谈航空认证标准(Ⅱ)">
       谈谈航空认证标准(Ⅱ) <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -320,6 +332,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -395,7 +408,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/SSSnow.github.io/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -520,6 +533,35 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'JkgIAyNSOFM57SHX1QwKJTbw-gzGzoHsz',
+      appKey     : 'AMdisxLvLDVYmYnPqP6RxehH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : 'zh-CN' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

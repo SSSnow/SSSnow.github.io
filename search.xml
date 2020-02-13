@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>谈谈航空认证标准-1</title>
-    <url>/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86-1/</url>
-    <content><![CDATA[]]></content>
+    <title>谈谈航空认证标准(Ⅲ)</title>
+    <url>/SSSnow.github.io/2020/02/12/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86-2/</url>
+    <content><![CDATA[<blockquote>
+<p>逆风的方向，更适合飞翔</p>
+<p>不怕千万人阻挡，只怕自己投降</p>
+</blockquote>
+<p><img src="/SSSnow.github.io/2020/02/12/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86-2/header.jpg" alt></p>
+<h1 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h1>
+<p>本文主要详细的讲述下mathworks下DO178C的工作流。</p>
+<a id="more"></a>
+<h2 id="基于模型设计的do178c工作流"><a class="markdownIt-Anchor" href="#基于模型设计的do178c工作流"></a> 基于模型设计的DO178C工作流</h2>
+<h3 id="需求工作流"><a class="markdownIt-Anchor" href="#需求工作流"></a> 需求工作流</h3>
+]]></content>
+      <categories>
+        <category>航空航天</category>
+      </categories>
+      <tags>
+        <tag>mathworks</tag>
+        <tag>simulink</tag>
+        <tag>DO178C</tag>
+        <tag>workflow</tag>
+      </tags>
   </entry>
   <entry>
     <title>谈谈航空认证标准(Ⅱ)</title>
-    <url>/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86-1_bp/</url>
+    <url>/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86-1/</url>
     <content><![CDATA[<blockquote>
 <p>秋风起兮白云飞 草木落兮雁南归</p>
 <p>兰有秀兮菊有芳 怀佳人兮不能忘</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/SSSnow/picGo/master/pictures/20200211171528.png" alt></p>
+<p><img src="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86-1/header.jpg" alt></p>
 <p>##序言</p>
 <p>​	本文主要谈谈DO-178C的相关内容，及其借助<code>simulink</code>的开发流程。</p>
 <a id="more"></a>
@@ -22,10 +41,10 @@
 <p>​	首先了解下软件过程，如下图所示</p>
 <pre class="mermaid">	graph LR
 	title[软件计划过程]
-	1[软件开发计划SDP]-->2[软件验证计划SVP]
-	2-->3[软件配置管理计划SCMP]
-	3-->4[软件质量保证计划SQAP]
-	5-->6[软件合格审定计划PASC]
+	A1[软件开发计划SDP]-->A2[软件验证计划SVP]
+	A2-->A3[软件配置管理计划SCMP]
+	A3-->A4[软件质量保证计划SQAP]
+	A4-->A5[软件合格审定计划PASC]
 	title1[软件开发流程]
 	A[软件需求过程] --> B[软件设计过程]
 	B-->C[软件编码过程]
@@ -88,7 +107,28 @@
 </li>
 </ul>
 <p>生命周期环境变化的控制方法是一旦发生更改，和软件数据的更改一样走一个更改流程，通过流程中的更改影响分析环节来确定哪些数据需要返工。同时，这样的更改应同时报告主机商。</p>
-<h2 id="simulink中提供的do-178c工作流"><a class="markdownIt-Anchor" href="#simulink中提供的do-178c工作流"></a> simulink中提供的DO-178C工作流</h2>
+<h2 id="mathworks中提供的do-178c工作流"><a class="markdownIt-Anchor" href="#mathworks中提供的do-178c工作流"></a> mathworks中提供的DO-178C工作流</h2>
+<p>​	这里主要讲的是基于模型开发，到代码自动生成的检验过程。在这先提几个概念，将在后续文章中细化具体流程。</p>
+<p>​	在此工作流的输入端分别是如下几点：</p>
+<ul>
+<li><code>simulink</code> 需求池</li>
+<li>仿真案例分析</li>
+<li>设计的限制条件
+<ul>
+<li>等效类</li>
+<li>边界值</li>
+<li>派生需求</li>
+</ul>
+</li>
+<li>测试环境设定</li>
+<li>模型标准</li>
+<li>自动编程设定</li>
+<li>编码标准</li>
+<li>验证对象设定</li>
+<li>SIL 测试案例分析</li>
+<li>文档模板脚本</li>
+</ul>
+<p>通过以上输入实现基于模型设计的DO-178C工作流，为飞行软件的适航提供保证。</p>
 ]]></content>
       <categories>
         <category>航空航天</category>
@@ -104,7 +144,6 @@
 <p>谁看见过风？我和你，都不曾看见过。但是当树叶颤动之时，就代表风正吹拂而过。风啊，请展开羽翼，将它送达你的身边!</p>
 </blockquote>
 <p><img src="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/header.jpg" alt></p>
-<img src="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/header.jpg" class title="header">
 <h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
 <p>​	这里主要讨论DO-178B, DO-254标准，解释其背景，意义，以及是怎么工作的。</p>
 <a id="more"></a>
