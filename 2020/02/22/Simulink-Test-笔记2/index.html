@@ -20,26 +20,23 @@
     var CONFIG = {"hostname":"sssnow.github.io","root":"/SSSnow.github.io/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":"enable","color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"path":"search.xml","field":"post","format":"html","limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="学习笔记，工作心得，事业感悟，生活随笔">
-<meta property="og:type" content="website">
-<meta property="og:title" content="古月的江湖">
-<meta property="og:url" content="https://sssnow.github.io/tags/DO-178C%EF%BC%8CDO-254%EF%BC%8CDO-Qualification-Kit/index.html">
+  <meta name="description" content="沿着这条路一直往前走，在不远的地方就有一个路口，你可以左转也可以朝前走，但是不能停留。    引言 本篇主要介绍基线测试，验证模型是否满足要求，并将模拟结果与基线数据进行比较。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Simulink Test 笔记2">
+<meta property="og:url" content="https://sssnow.github.io/2020/02/22/Simulink-Test-%E7%AC%94%E8%AE%B02/index.html">
 <meta property="og:site_name" content="古月的江湖">
-<meta property="og:description" content="学习笔记，工作心得，事业感悟，生活随笔">
+<meta property="og:description" content="沿着这条路一直往前走，在不远的地方就有一个路口，你可以左转也可以朝前走，但是不能停留。    引言 本篇主要介绍基线测试，验证模型是否满足要求，并将模拟结果与基线数据进行比较。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sssnow.github.io/SSSnow.github.io/2020/02/22/Simulink-Test-%E7%AC%94%E8%AE%B02/Simulink-Test-%E7%AC%94%E8%AE%B02%5Cheader.jpg">
+<meta property="og:image" content="https://sssnow.github.io/SSSnow.github.io/2020/02/22/Simulink-Test-%E7%AC%94%E8%AE%B02/Simulink-Test-%E7%AC%94%E8%AE%B02%5CTestManager.png">
+<meta property="article:published_time" content="2020-02-22T08:51:41.000Z">
+<meta property="article:modified_time" content="2020-02-22T08:51:41.000Z">
 <meta property="article:author" content="snow pang">
-<meta property="article:tag" content="无人机">
-<meta property="article:tag" content="自动控制">
-<meta property="article:tag" content="飞行器建模">
-<meta property="article:tag" content=" 折腾">
-<meta property="article:tag" content=" MATLAB">
-<meta property="article:tag" content="Simulink">
-<meta property="article:tag" content="C++">
-<meta property="article:tag" content="C">
-<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Simulink， test">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sssnow.github.io/SSSnow.github.io/2020/02/22/Simulink-Test-%E7%AC%94%E8%AE%B02/Simulink-Test-%E7%AC%94%E8%AE%B02%5Cheader.jpg">
 
-<link rel="canonical" href="https://sssnow.github.io/tags/DO-178C%EF%BC%8CDO-254%EF%BC%8CDO-Qualification-Kit/">
+<link rel="canonical" href="https://sssnow.github.io/2020/02/22/Simulink-Test-%E7%AC%94%E8%AE%B02/">
 
 
 <script id="page-configurations">
@@ -47,11 +44,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>标签: DO-178C，DO-254，DO Qualification Kit | 古月的江湖</title>
+  <title>Simulink Test 笔记2 | 古月的江湖</title>
   
 
 
@@ -186,54 +183,162 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">DO-178C，DO-254，DO Qualification Kit
-          <small>标签</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sssnow.github.io/2020/02/22/Simulink-Test-%E7%AC%94%E8%AE%B02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/SSSnow.github.io/uploads/avatar.jpg">
+      <meta itemprop="name" content="snow pang">
+      <meta itemprop="description" content="学习笔记，工作心得，事业感悟，生活随笔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="古月的江湖">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Simulink Test 笔记2
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-22 16:51:41" itemprop="dateCreated datePublished" datetime="2020-02-22T16:51:41+08:00">2020-02-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/SSSnow.github.io/categories/Simulink-Test/" itemprop="url" rel="index">
+                    <span itemprop="name">Simulink Test</span>
+                  </a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/SSSnow.github.io/2020/02/22/Simulink-Test-%E7%AC%94%E8%AE%B02/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/SSSnow.github.io/2020/02/22/Simulink-Test-%E7%AC%94%E8%AE%B02/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
+        <blockquote>
+<p>沿着这条路一直往前走，在不远的地方就有一个路口，你可以左转也可以朝前走，但是不能停留。</p>
+</blockquote>
+<p><img src="/SSSnow.github.io/2020/02/22/Simulink-Test-%E7%AC%94%E8%AE%B02/Simulink-Test-%E7%AC%94%E8%AE%B02%5Cheader.jpg" alt></p>
+<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
+<p>本篇主要介绍基线测试，验证模型是否满足要求，并将模拟结果与基线数据进行比较。</p>
+<a id="more"></a>
+<h2 id="启动测试管理器"><a class="markdownIt-Anchor" href="#启动测试管理器"></a> 启动测试管理器</h2>
+<p>​	打开构建好的模型，以本人建的电动机+螺旋桨模型为例。打开模型，在工具栏中选择Analysis(分析)-&gt; Test Manager(测试管理器)， 来启动测试管理器。</p>
+<p><img src="/SSSnow.github.io/2020/02/22/Simulink-Test-%E7%AC%94%E8%AE%B02/Simulink-Test-%E7%AC%94%E8%AE%B02%5CTestManager.png" alt></p>
+<h2 id="根据需求验证模型行为"><a class="markdownIt-Anchor" href="#根据需求验证模型行为"></a> 根据需求验证模型行为</h2>
+<p>创建一个测试文件结构，向其中添加一个测试用例，然后运行测试。</p>
+<h3 id="创建测试文件结构"><a class="markdownIt-Anchor" href="#创建测试文件结构"></a> 创建测试文件结构</h3>
+<ul>
+<li>将当前文件家设置为可写文件夹。</li>
+<li>创建一个测试文件。从“Test Manager(测试管理器)”工具栏中选择“New(新建测试文件)”。</li>
+<li>将文件命名为‘Tutorial Tests’,并保存。测试文件包含一个或多个测试套件，测试套件包含一个或多个测试用例。使用此结构组织相关测试。此结构还可以帮助单独运行测试，或者在文件或套件中运行所有测试。</li>
+<li>默认的测试用例是基线测试。将其转换未模拟测试。选择测试用例，并从上下文菜单中选择 Convert to Simulation Test, 然后单击Yes以确认转换。</li>
+<li>将测试重命名， 可以在测试浏览器中使用上下文菜单并选择Rename.或者单击该名称并在测试用例中键入一个新的名称。</li>
+</ul>
+<h3 id="为测试用例分配模型"><a class="markdownIt-Anchor" href="#为测试用例分配模型"></a> 为测试用例分配模型</h3>
+<p>在SYSTEM UNDER TEST下的model 中指定测试模型。</p>
+<h3 id="捕捉基线"><a class="markdownIt-Anchor" href="#捕捉基线"></a> 捕捉基线</h3>
+<p>在基线测试中，将模拟的输出与预期的输出进行比较。可以将Test Manager 中的输出捕获未Excel文件或MAT-file, 或者可以向测试用例添加一个外部文件作为基线。</p>
+<ul>
+<li>在测试用例中，在 <strong>Baseline Criteria</strong> 中点击 <strong>Capture</strong>.</li>
+<li>将<strong>File format</strong>设置为<code>Excel</code>,</li>
+</ul>
+<h3 id="运行测试并检查结果"><a class="markdownIt-Anchor" href="#运行测试并检查结果"></a> 运行测试并检查结果</h3>
+<ul>
+<li>在测试管理器工具栏，单击<code>运行</code>，此时左侧导航栏将从<code>Test Browser</code>更改为<code>Results and Artifacts</code> 窗格。</li>
+</ul>
+<h2 id="创建并运行基线测试"><a class="markdownIt-Anchor" href="#创建并运行基线测试"></a> 创建并运行基线测试</h2>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
+        
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-02-11T17:07:35+08:00"
-              content="2020-02-11">
-          02-11
-        </time>
-      </div>
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>snow pang
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://sssnow.github.io/2020/02/22/Simulink-Test-%E7%AC%94%E8%AE%B02/" title="Simulink Test 笔记2">https://sssnow.github.io/2020/02/22/Simulink-Test-笔记2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86-1/" itemprop="url">
-            <span itemprop="name">谈谈航空认证标准(Ⅱ)</span>
-          </a>
-      </h2>
 
-    </header>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/SSSnow.github.io/tags/Simulink%EF%BC%8C-test/" rel="tag"># Simulink， test</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/SSSnow.github.io/2020/02/22/Simulink-Test-%E7%AC%94%E8%AE%B01/" rel="prev" title="Simulink Test 笔记1">
+      <i class="fa fa-chevron-left"></i> Simulink Test 笔记1
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/SSSnow.github.io/2020/03/08/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%82%E6%95%B0%E6%A0%A1%E5%87%86/" rel="next" title="模型优化之参数校准">
+      模型优化之参数校准 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
+  
+  
+  
 
-    </div>
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -280,6 +385,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text"> 引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动测试管理器"><span class="nav-number">2.</span> <span class="nav-text"> 启动测试管理器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据需求验证模型行为"><span class="nav-number">3.</span> <span class="nav-text"> 根据需求验证模型行为</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建测试文件结构"><span class="nav-number">3.1.</span> <span class="nav-text"> 创建测试文件结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为测试用例分配模型"><span class="nav-number">3.2.</span> <span class="nav-text"> 为测试用例分配模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#捕捉基线"><span class="nav-number">3.3.</span> <span class="nav-text"> 捕捉基线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行测试并检查结果"><span class="nav-number">3.4.</span> <span class="nav-text"> 运行测试并检查结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建并运行基线测试"><span class="nav-number">4.</span> <span class="nav-text"> 创建并运行基线测试</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
