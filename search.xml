@@ -1,6 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>控制系统调节</title>
+    <url>/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<blockquote>
+<p>看海和出海是两种不同的人生境界</p>
+<p>一种把眼睛给了海，一种把生命给了海</p>
+</blockquote>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/header.png" alt></p>
+<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
+<p>​	本文主要记录如何使用<strong>Control System Tuner</strong>进行控制系统调节，以及其中的注意事项。</p>
+<a id="more"></a>
+<h2 id="初识"><a class="markdownIt-Anchor" href="#初识"></a> 初识</h2>
+<p>​	该工具用于调节固定结构的控制系统，适用于单回路和多回路调节，能有效提高传统的单回路调节效率。</p>
+<h3 id="工作流"><a class="markdownIt-Anchor" href="#工作流"></a> 工作流</h3>
+<ol>
+<li>通过构建具有固定值的模块和可调参的模块来定义你的控制系统框架。可以通过以下几种方式。
+<ul>
+<li>创建控制系统的Simulink模型</li>
+<li>从<strong>Control System Tuner</strong>使用一个预定义的控制器框架</li>
+<li>在命令行中，用数字 LTI 模型和可调控制设计块构建控制系统的可调 广义的状态空间模型(genss)</li>
+</ul>
+</li>
+<li>设置一个用于调优的模型
+<ul>
+<li>在<strong>Control System Tuner</strong>，确定要优化模型的哪些块。</li>
+<li>如果在命令行调优 Simulink 模型，则创建并配置模型的 slTuner 接口。</li>
+</ul>
+</li>
+<li>指定您的调优目标。 使用调优目标库来捕获需求，比如引用跟踪、干扰抑制、稳定边界等等
+<ul>
+<li>在<strong>Control System Tuner</strong>中，使用图形界面指定调优目标。</li>
+<li>在命令行中，使用 TuningGoal 需求对象来指定优化目标。</li>
+</ul>
+</li>
+<li>调整模型。 使用系统命令或控制系统调谐器来优化控制系统的可调参数，以最好地满足指定的调优目标。 然后，对调谐系统响应进行分析，并对设计进行验证。 无论是在命令行还是在 Control System Tuner 中，您都可以绘制系统响应，以检查需要验证设计的系统性能的任何方面。
+<ul>
+<li>使用 <strong>Control System Tuner</strong>来进行调优和验证。</li>
+<li>使用命令行来进行调优和验证。</li>
+</ul>
+</li>
+</ol>
+<h2 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h2>
+<h3 id="前期准备"><a class="markdownIt-Anchor" href="#前期准备"></a> 前期准备</h3>
+<p>​	在模型中配置相关的线性化分析点类型。分析点类型有以下几种，参见<a href="https://ww2.mathworks.cn/help/slcontrol/ug/specify-model-portion-to-linearize.html" target="_blank" rel="noopener">官方说明</a>。</p>
+<ul>
+<li>
+<p>Input perturbation:  指定信号的附加输入，反映的是从输入点到输出点的闭环响应特性</p>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/analysis_pt_u_in.png" alt></p>
+</li>
+<li>
+<p>Output measurement: 在信号处进行测量</p>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/analysis_pt_u_out.png" alt></p>
+</li>
+<li>
+<p>Loop break: 指定一个环路断开，用于中断某个信号</p>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/analysis_pt_u_break.png" alt></p>
+</li>
+<li>
+<p>Open-loop input: 指定位置前环路中断的输入信号，反映的是开环的输入</p>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/analysis_pt_u_in_break.png" alt></p>
+</li>
+<li>
+<p>Open-loop output: 指定位置后的环路中断的信号测量</p>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/analysis_pt_u_out_break.png" alt></p>
+</li>
+<li>
+<p>Loop transfer function: 指定在环路中断后跟输入扰动之前的输出测量值。</p>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/analysis_pt_u_looptf.png" alt></p>
+</li>
+<li>
+<p>Sensitivity function:指定输入扰动后跟输出测量值</p>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/analysis_pt_u_sens.png" alt></p>
+</li>
+<li>
+<p>Complementary sensitivity function:指定输出测量后跟输入扰动</p>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/analysis_pt_u_csens.png" alt></p>
+</li>
+</ul>
+<p>需要在模型中配置清楚扰动输入点和测量点。</p>
+<h3 id="配置调优器"><a class="markdownIt-Anchor" href="#配置调优器"></a> 配置调优器</h3>
+<ul>
+<li>
+<p>打开调优器，在Simulink 的编辑栏选择`Analysis -&gt; Control Design -&gt; Control System Tuner即可打开调优器。</p>
+</li>
+<li>
+<p>配置需要调节的模块。在调优器编辑栏选择<code>TUNING -&gt; Select Blocks</code>,打开选择器，选择需要调节的模块，再选择底部按钮<code>Add Blocks</code>来勾选模型中需要调节的模块。例程中选择如下图所示</p>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/tune_block_select.png" alt></p>
+</li>
+<li>
+<p>配置调优目标。一般需要包括跟踪特性，输入的稳定裕度，输出稳定裕度以及限制闭环的快速动态和急剧瞬变特性。</p>
+<ul>
+<li>
+<p>跟踪特性配置：在调优工具状态栏选择<code>New Goal -&gt; Step Tracking Goal</code>，打开阶跃跟踪目标，分别配置阶跃响应的输入和输出，并配置超调比例，如下图所示。</p>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/step_goal.jpg" alt></p>
+</li>
+<li>
+<p>输入输出的稳定裕度配置：在调优工具状态栏选择<code>New Goal -&gt; Minimum stability margins</code>，打开稳定裕度配置窗口，分别配置输入信号端口及其增益裕度和相位裕度，如下图所示。</p>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/input_margin_goal.jpg" alt></p>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/output_margin_goal.jpg" alt></p>
+</li>
+<li>
+<p>限制闭环快速动态及急动特性：在调优工具状态栏选择<code>New Goal -&gt; Constraint on closed-loop dynamics</code>，打开极点配置窗口，对最大固有频率进行设置，如下图所示。</p>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/pole_goal.jpg" alt></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>可根据系统设计需求进行其他配置。</p>
+<h3 id="调优并查看报告"><a class="markdownIt-Anchor" href="#调优并查看报告"></a> 调优并查看报告</h3>
+<p>配置完成后，在调优器编辑界面点击<strong>Tune</strong>,开始自动进行参数调优工作。调优完成后，可以点击调优界面右下角的<code>Tuning Report</code>查看报告，如下图所示。最终优化结果Soft goal 越接近1，表示效果越好，偏差越小。</p>
+<p><img src="/SSSnow.github.io/2020/03/10/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%8A%82%E4%B9%8BSYSTUNE%E7%9A%84%E4%BD%BF%E7%94%A8/report.png" alt></p>
+<h3 id="校验"><a class="markdownIt-Anchor" href="#校验"></a> 校验</h3>
+<p>调优完成后，在调优器界面选择<code>CONTROL SYSTEM -&gt; update blocks</code>，直接将调优参数更新到模型中，再在模型中进行仿真查看结果。</p>
+]]></content>
+      <categories>
+        <category>Simulink学习</category>
+      </categories>
+      <tags>
+        <tag>控制系统</tag>
+        <tag>SYSTUNE</tag>
+        <tag>MATLAB2018b</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>模型优化之参数校准</title>
     <url>/SSSnow.github.io/2020/03/08/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%82%E6%95%B0%E6%A0%A1%E5%87%86/</url>
     <content><![CDATA[<blockquote>
