@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"sssnow.github.io","root":"/SSSnow.github.io/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":"enable","color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"path":"search.xml","field":"post","format":"html","limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="要好好珍惜自己的名字，记得自己是谁 便知道自己要做什么，要走什么样的路    引言 ​	本文主要记录模型优化方法中的参数校准。利用simulink中的parameter estimation工具箱，梳理工作流，并以官方的伺服电机作为学习的例子。">
+  <meta name="description" content="要好好珍惜自己的名字，记得自己是谁 便知道自己要做什么，要走什么样的路   引言​    本文主要记录模型优化方法中的参数校准。利用simulink中的parameter estimation工具箱，梳理工作流，并以官方的伺服电机作为学习的例子。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模型优化之参数校准">
 <meta property="og:url" content="https://sssnow.github.io/2020/03/08/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%82%E6%95%B0%E6%A0%A1%E5%87%86/index.html">
 <meta property="og:site_name" content="古月的江湖">
-<meta property="og:description" content="要好好珍惜自己的名字，记得自己是谁 便知道自己要做什么，要走什么样的路    引言 ​	本文主要记录模型优化方法中的参数校准。利用simulink中的parameter estimation工具箱，梳理工作流，并以官方的伺服电机作为学习的例子。">
+<meta property="og:description" content="要好好珍惜自己的名字，记得自己是谁 便知道自己要做什么，要走什么样的路   引言​    本文主要记录模型优化方法中的参数校准。利用simulink中的parameter estimation工具箱，梳理工作流，并以官方的伺服电机作为学习的例子。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sssnow.github.io/SSSnow.github.io/2020/03/08/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%82%E6%95%B0%E6%A0%A1%E5%87%86/header.jpg">
 <meta property="og:image" content="https://sssnow.github.io/SSSnow.github.io/2020/03/08/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%82%E6%95%B0%E6%A0%A1%E5%87%86/new_experiment.png">
@@ -230,6 +230,13 @@
             </span>
 
           
+            <span id="/SSSnow.github.io/2020/03/08/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%82%E6%95%B0%E6%A0%A1%E5%87%86/" class="post-meta-item leancloud_visitors" data-flag-title="模型优化之参数校准" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
   
   <span class="post-meta-item">
     
@@ -243,7 +250,21 @@
     </a>
   </span>
   
-  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -259,40 +280,33 @@
 <p>便知道自己要做什么，要走什么样的路</p>
 </blockquote>
 <p><img src="/SSSnow.github.io/2020/03/08/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%82%E6%95%B0%E6%A0%A1%E5%87%86/header.jpg" alt></p>
-<h2 id="引言"><a class="markdownIt-Anchor" href="#引言"></a> 引言</h2>
-<p>​	本文主要记录模型优化方法中的参数校准。利用simulink中的parameter estimation工具箱，梳理工作流，并以官方的伺服电机作为学习的例子。</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>​    本文主要记录模型优化方法中的参数校准。利用simulink中的parameter estimation工具箱，梳理工作流，并以官方的伺服电机作为学习的例子。</p>
 <a id="more"></a>
-<h2 id="模型校准工作流"><a class="markdownIt-Anchor" href="#模型校准工作流"></a> 模型校准工作流</h2>
-<p>​	一个模型主要由许多定义好的参数组成，由于厂家一般提供的数据均为约数，由此建出来的模型离实际相差甚远，所以处理摸型校准的过程其实就是对参数校准的过程。参数校准主要涉及到以下几步。</p>
+<h2 id="模型校准工作流"><a href="#模型校准工作流" class="headerlink" title="模型校准工作流"></a>模型校准工作流</h2><p>​    一个模型主要由许多定义好的参数组成，由于厂家一般提供的数据均为约数，由此建出来的模型离实际相差甚远，所以处理摸型校准的过程其实就是对参数校准的过程。参数校准主要涉及到以下几步。</p>
 <ul>
 <li>为系统收集实验对象的测试输入输出数据</li>
 <li>指出需要进行校准的参数</li>
 <li>配置参数估计器并运行一个合适的估计算法</li>
 <li>根据其他测试数据集验证结果，并在必要时重复上述步骤</li>
 </ul>
-<h2 id="参数估计器的使用"><a class="markdownIt-Anchor" href="#参数估计器的使用"></a> 参数估计器的使用</h2>
-<p>在 Simulink Design Optimization 中提供了一个 Parameter Estimation Tool( 参数估计器 ).</p>
-<h3 id="前期准备"><a class="markdownIt-Anchor" href="#前期准备"></a> 前期准备</h3>
-<p>在开始参数估计前，我们需要准备两组数据集，分别是估计数据集，校验数据集。</p>
+<h2 id="参数估计器的使用"><a href="#参数估计器的使用" class="headerlink" title="参数估计器的使用"></a>参数估计器的使用</h2><p>在 Simulink Design Optimization 中提供了一个 Parameter Estimation Tool( 参数估计器 ).</p>
+<h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><p>在开始参数估计前，我们需要准备两组数据集，分别是估计数据集，校验数据集。</p>
 <p>数据集特点：</p>
 <ul>
 <li>包含输入输出数据</li>
 <li>输入数据为方波</li>
-<li>输入输出数据格式：&lt;1, 1 signal 1 point&gt;</li>
+<li>输入输出数据格式：<1, 1 signal point></1,></li>
 <li>时间周期为：0.005s/200Hz</li>
 </ul>
 <p>采集完数据之后，制作数据集，包括估计数据集和校验数据集。以下脚本为制作输入输出信息的txt文档。</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% 处理实验数据</span></span><br><span class="line"><span class="comment">% 1.获取采样输出数据</span></span><br><span class="line">data_op = get(est_output_value,<span class="string">'Data'</span>);</span><br><span class="line">data_ip = get(est_ip,<span class="string">'Data'</span>);</span><br><span class="line">len = <span class="built_in">length</span>(data_ip);</span><br><span class="line">dt = <span class="number">0.005</span>;</span><br><span class="line">time = <span class="number">0</span>:dt:(len<span class="number">-1</span>)*dt;</span><br><span class="line"></span><br><span class="line"><span class="comment">% 2.将数据写入.txt文件</span></span><br><span class="line">fid = fopen(<span class="string">'experiment_op.txt'</span>,<span class="string">'wt'</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">1</span>:len</span><br><span class="line">    fprintf(fid,<span class="string">'%f'</span>,time(<span class="built_in">i</span>));</span><br><span class="line">    fprintf(fid,<span class="string">'    %f\n'</span>,data_op(<span class="built_in">i</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">fclose(fid);</span><br><span class="line"></span><br><span class="line">fid = fopen(<span class="string">'experiment_ip.txt'</span>,<span class="string">'wt'</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">1</span>:len</span><br><span class="line">    fprintf(fid,<span class="string">'%f'</span>,time(<span class="built_in">i</span>));</span><br><span class="line">    fprintf(fid,<span class="string">'    %f\n'</span>,data_ip(<span class="built_in">i</span>));</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">fclose(fid);</span><br></pre></td></tr></table></figure>
-<h3 id="配置参数校准工具"><a class="markdownIt-Anchor" href="#配置参数校准工具"></a> 配置参数校准工具</h3>
-<p>在官方给的例子中使用指令打开了配置好的参数估计器</p>
+<h3 id="配置参数校准工具"><a href="#配置参数校准工具" class="headerlink" title="配置参数校准工具"></a>配置参数校准工具</h3><p>在官方给的例子中使用指令打开了配置好的参数估计器</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sdotool( slResolve(&#39;spe_servomotor_sdosession&#39;, &#39;spe_servomotor&#39;) );</span><br></pre></td></tr></table></figure>
 <p>这里对指令进行详解一下，也算是对MATLAB指令工具的学习吧。</p>
 <ul>
-<li>
-<p><strong>sdotool</strong></p>
+<li><p><strong>sdotool</strong></p>
 <ul>
-<li>指令功能：打开响应优化工具箱
-<ul>
+<li>指令功能：打开响应优化工具箱<ul>
 <li>可以指定设计需求，比如时域响应、频域响应</li>
 <li>合并参数不确定性以验证设计的鲁棒性</li>
 <li>找到最具影响的参数进行优化(使用Sensitivity Analysis tool)</li>
@@ -303,55 +317,43 @@
 <li>其他启动方式：在simulink模型编辑器中选择 <strong>Analysis</strong> &gt; <strong>Response Optimization</strong>.</li>
 </ul>
 </li>
-<li>
-<p><strong>slResolve</strong></p>
+<li><p><strong>slResolve</strong></p>
 <ul>
-<li>
-<p>该指令为一个内置函数，函数原型如下</p>
+<li><p>该指令为一个内置函数，函数原型如下</p>
 </li>
-<li>
-<pre class="highlight"><code class="matlab"><span class="function"><span class="keyword">function</span> <span class="params">[val,mdl]</span> = <span class="title">slResolve</span><span class="params">(varName,mdl,cmd)</span></span>
+<li><pre><code class="lang-matlab">function [val,mdl] = slResolve(varName,mdl,cmd)
 </code></pre>
 </li>
-<li>
-<p>其中varName: 需要求解的变量名字，即<code>spe_servomotor_sdosession</code>,该文件存在模型空间下，mdl:即为所要优化的模型， cmd:{‘variable’,‘context’} 默认为’variable’</p>
+<li><p>其中varName: 需要求解的变量名字，即<code>spe_servomotor_sdosession</code>,该文件存在模型空间下，mdl:即为所要优化的模型， cmd:{‘variable’,’context’} 默认为’variable’</p>
 </li>
-<li>
-<p>该指令自动化处理已有模型配置的数据，为优化做准备。</p>
+<li><p>该指令自动化处理已有模型配置的数据，为优化做准备。</p>
 </li>
 </ul>
 <p>对于一般使用者来说，这样处理并不好用，特别是初学者，下面将以初学者的角度，来一步一步启动这个参数优化器。</p>
 <ul>
-<li>
-<p>启动参数参数校准工具, 在模型编辑器窗口选择<code>Analysis -&gt; Parameter Eestimation...</code></p>
+<li><p>启动参数参数校准工具, 在模型编辑器窗口选择<code>Analysis -&gt; Parameter Eestimation...</code></p>
 </li>
-<li>
-<p>添加实验数据，在Parameter Estimation编辑窗口选择<code>New Experiment</code>,即可打开实验数据编辑窗口</p>
+<li><p>添加实验数据，在Parameter Estimation编辑窗口选择<code>New Experiment</code>,即可打开实验数据编辑窗口</p>
 <p><img src="/SSSnow.github.io/2020/03/08/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%82%E6%95%B0%E6%A0%A1%E5%87%86/new_experiment.png" alt></p>
 <p>分别导入前期准备好的数据集，选择<strong>plot</strong>并点击ok，完成实验数据导入，结果如下图所示。以相同的方式再导入校验数据集。</p>
 <p><img src="/SSSnow.github.io/2020/03/08/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%82%E6%95%B0%E6%A0%A1%E5%87%86/import_exp.png" alt></p>
 </li>
-<li>
-<p>配置需要校准的参数，在Parameter Estimation编辑器中，选择<code>Select Parameters -&gt; 点击select parameters</code>，选择模型中所需要校准的参数，</p>
+<li><p>配置需要校准的参数，在Parameter Estimation编辑器中，选择<code>Select Parameters -&gt; 点击select parameters</code>，选择模型中所需要校准的参数，</p>
 <p><img src="/SSSnow.github.io/2020/03/08/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%82%E6%95%B0%E6%A0%A1%E5%87%86/select_parameters.png" alt></p>
 <p>然后再配置参数的最大最小值，保证参数的屋里特性处于合理范围内，如下图所示</p>
 <p><img src="/SSSnow.github.io/2020/03/08/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%82%E6%95%B0%E6%A0%A1%E5%87%86/parameters_limit.png" alt></p>
 </li>
-<li>
-<p>查看仿真结果，在Parameter Estimation编辑器中，选择<code>Plot Model Response</code>,查看响应结果。</p>
+<li><p>查看仿真结果，在Parameter Estimation编辑器中，选择<code>Plot Model Response</code>,查看响应结果。</p>
 </li>
-<li>
-<p>估计参数，在Parameter Estimation编辑器中，选择<code>Estimate</code>,开始执行估计，需要等待一段时间，估计结果如下。</p>
+<li><p>估计参数，在Parameter Estimation编辑器中，选择<code>Estimate</code>,开始执行估计，需要等待一段时间，估计结果如下。</p>
 <p><img src="/SSSnow.github.io/2020/03/08/%E6%A8%A1%E5%9E%8B%E4%BC%98%E5%8C%96%E4%B9%8B%E5%8F%82%E6%95%B0%E6%A0%A1%E5%87%86/result.png" alt></p>
 </li>
-<li>
-<p>最后保存估计出来的参数。</p>
+<li><p>最后保存估计出来的参数。</p>
 </li>
 </ul>
 </li>
 </ul>
-<h2 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h2>
-<ol>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
 <li>主要处理数据合理性，将数据建立在合理的。</li>
 <li>关于初始条件，可以更具模型特定状态进行初始化。</li>
 <li>关于实验数据，如果存在一定偏差或者噪声的情况下，应事先做好滤波处理。</li>
@@ -458,7 +460,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text"> 引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型校准工作流"><span class="nav-number">2.</span> <span class="nav-text"> 模型校准工作流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数估计器的使用"><span class="nav-number">3.</span> <span class="nav-text"> 参数估计器的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前期准备"><span class="nav-number">3.1.</span> <span class="nav-text"> 前期准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置参数校准工具"><span class="nav-number">3.2.</span> <span class="nav-text"> 配置参数校准工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text"> 注意事项</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型校准工作流"><span class="nav-number">2.</span> <span class="nav-text">模型校准工作流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数估计器的使用"><span class="nav-number">3.</span> <span class="nav-text">参数估计器的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前期准备"><span class="nav-number">3.1.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-NaN"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置参数校准工具"><span class="nav-number">3.2.</span> <span class="nav-text">配置参数校准工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意事项"><span class="nav-number">4.</span> <span class="nav-text">注意事项</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -525,6 +527,18 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">snow pang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">9k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
@@ -548,6 +562,95 @@
 
 
 
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=JkgIAyNSOFM57SHX1QwKJTbw-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id'     : 'JkgIAyNSOFM57SHX1QwKJTbw-gzGzoHsz',
+            'X-LC-Key'    : 'AMdisxLvLDVYmYnPqP6RxehH',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
 
 
       </div>

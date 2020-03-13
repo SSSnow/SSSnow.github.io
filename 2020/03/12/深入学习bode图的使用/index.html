@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"sssnow.github.io","root":"/SSSnow.github.io/","scheme":"Pisces","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":"enable","color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"path":"search.xml","field":"post","format":"html","limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="大江东去 浪淘尽 千古风流人物 问苍茫大地 谁主沉浮 还看今朝    前言 ​	本文主要记录在伯德图上使用的心得以及感悟。">
+  <meta name="description" content="大江东去 浪淘尽 千古风流人物 问苍茫大地 谁主沉浮 还看今朝   前言​    本文主要记录在伯德图上使用的心得以及感悟。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入学习bode图的使用">
 <meta property="og:url" content="https://sssnow.github.io/2020/03/12/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0bode%E5%9B%BE%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="古月的江湖">
-<meta property="og:description" content="大江东去 浪淘尽 千古风流人物 问苍茫大地 谁主沉浮 还看今朝    前言 ​	本文主要记录在伯德图上使用的心得以及感悟。">
+<meta property="og:description" content="大江东去 浪淘尽 千古风流人物 问苍茫大地 谁主沉浮 还看今朝   前言​    本文主要记录在伯德图上使用的心得以及感悟。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sssnow.github.io/SSSnow.github.io/2020/03/12/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0bode%E5%9B%BE%E7%9A%84%E4%BD%BF%E7%94%A8/header.png">
 <meta property="og:image" content="https://sssnow.github.io/SSSnow.github.io/2020/03/12/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0bode%E5%9B%BE%E7%9A%84%E4%BD%BF%E7%94%A8/control_system.png">
@@ -227,6 +227,13 @@
             </span>
 
           
+            <span id="/SSSnow.github.io/2020/03/12/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0bode%E5%9B%BE%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-meta-item leancloud_visitors" data-flag-title="深入学习bode图的使用" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
   
   <span class="post-meta-item">
     
@@ -240,7 +247,21 @@
     </a>
   </span>
   
-  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>324</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -256,18 +277,14 @@
 <p>问苍茫大地 谁主沉浮 还看今朝</p>
 </blockquote>
 <p><img src="/SSSnow.github.io/2020/03/12/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0bode%E5%9B%BE%E7%9A%84%E4%BD%BF%E7%94%A8/header.png" alt></p>
-<h2 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h2>
-<p>​	本文主要记录在伯德图上使用的心得以及感悟。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    本文主要记录在伯德图上使用的心得以及感悟。</p>
 <a id="more"></a>
-<h2 id="闭环控制系统"><a class="markdownIt-Anchor" href="#闭环控制系统"></a> 闭环控制系统</h2>
-<p>​	一般的系统均有以下结构,其中<strong>C</strong>指的是控制器，<strong>P</strong>指的是被控对象，<strong>r</strong>表示输入指令，<strong>y</strong>表示系统的输出状态，<strong>u</strong>表示控制量，<strong>d</strong>表示外部扰动，<strong>n</strong>表示测量噪声，<strong>e</strong>为误差信号，注意这里执行机构统一归属于被控对象不单独列出。</p>
+<h2 id="闭环控制系统"><a href="#闭环控制系统" class="headerlink" title="闭环控制系统"></a>闭环控制系统</h2><p>​    一般的系统均有以下结构,其中<strong>C</strong>指的是控制器，<strong>P</strong>指的是被控对象，<strong>r</strong>表示输入指令，<strong>y</strong>表示系统的输出状态，<strong>u</strong>表示控制量，<strong>d</strong>表示外部扰动，<strong>n</strong>表示测量噪声，<strong>e</strong>为误差信号，注意这里执行机构统一归属于被控对象不单独列出。</p>
 <p><img src="/SSSnow.github.io/2020/03/12/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0bode%E5%9B%BE%E7%9A%84%E4%BD%BF%E7%94%A8/control_system.png" alt></p>
-<p>这里将闭环传递函数分为表示成<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>r</mi><mo separator="true">,</mo><mi>n</mi><mo separator="true">,</mo><mi>d</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">y = F(r, n, d)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mclose">)</span></span></span></span>的函数形式，便于对闭环控制进行理论分析，其中<strong>T</strong>所表示区域称为互补灵敏度或者传输性，<strong>S</strong>所表示的区域称为扰动的灵敏度同时也是误差的灵敏度。</p>
-<h3 id="二阶阻尼系统分析"><a class="markdownIt-Anchor" href="#二阶阻尼系统分析"></a> 二阶阻尼系统分析</h3>
-<p>​	对于LTI系统的二阶形式一般可以用以下形式描述</p>
-<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>G</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><msubsup><mi>w</mi><mi>n</mi><mn>2</mn></msubsup><mrow><msup><mi>s</mi><mn>2</mn></msup><mo>+</mo><mn>2</mn><mi>ζ</mi><msub><mi>w</mi><mi>n</mi></msub><mi>s</mi><mo>+</mo><msubsup><mi>w</mi><mi>n</mi><mn>2</mn></msubsup></mrow></mfrac></mrow><annotation encoding="application/x-tex">G(s) = \frac{w_n^2}{s^2 + 2\zeta w_ns +w_n^2}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">G</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.4241080000000004em;vertical-align:-0.933em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">2</span><span class="mord mathdefault" style="margin-right:0.07378em;">ζ</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.4530000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.933em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-
+<p>这里将闭环传递函数分为表示成$y = F(r, n, d)$的函数形式，便于对闭环控制进行理论分析，其中<strong>T</strong>所表示区域称为互补灵敏度或者传输性，<strong>S</strong>所表示的区域称为扰动的灵敏度同时也是误差的灵敏度。</p>
+<h3 id="二阶阻尼系统分析"><a href="#二阶阻尼系统分析" class="headerlink" title="二阶阻尼系统分析"></a>二阶阻尼系统分析</h3><p>​    对于LTI系统的二阶形式一般可以用以下形式描述</p>
+<script type="math/tex; mode=display">
+G(s) = \frac{w_n^2}{s^2 + 2\zeta w_ns +w_n^2}</script>
     </div>
 
     
@@ -367,7 +384,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭环控制系统"><span class="nav-number">2.</span> <span class="nav-text"> 闭环控制系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二阶阻尼系统分析"><span class="nav-number">2.1.</span> <span class="nav-text"> 二阶阻尼系统分析</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭环控制系统"><span class="nav-number">2.</span> <span class="nav-text">闭环控制系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二阶阻尼系统分析"><span class="nav-number">2.1.</span> <span class="nav-text">二阶阻尼系统分析</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -434,6 +451,18 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">snow pang</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">9k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">8 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
@@ -457,6 +486,95 @@
 
 
 
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=JkgIAyNSOFM57SHX1QwKJTbw-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id'     : 'JkgIAyNSOFM57SHX1QwKJTbw-gzGzoHsz',
+            'X-LC-Key'    : 'AMdisxLvLDVYmYnPqP6RxehH',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
 
 
       </div>
