@@ -7,9 +7,8 @@
 <p>江山代有才人出，各领风骚数百年</p>
 </blockquote>
 <p><img src="/SSSnow.github.io/2020/05/08/PX4-simulink-%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%8C%81%E5%8C%85%E4%BD%BF%E7%94%A8/Header.jpg" alt></p>
-<blockquote>
-<p>本问主要记录基于matlab2018b搭建PX4 simulink 硬件支持包的流程。</p>
-</blockquote>
+<h2 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h2><p>​    本问主要记录基于matlab2018b搭建PX4 simulink 硬件支持包的流程。</p>
+<a id="more"></a>
 <h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>​    这里主要使用官网提供的方法，利用WSL(windows下liunx子系统)，具体操作步骤直接参考<a href="https://www.mathworks.com/help/supportpkg/px4/setup-and-configuration.html?s_tid=CRUX_lftnav" target="_blank" rel="noopener">官网链接</a>。</p>
 <p>​    在搭建PX4编译环境时，会使用到pandas包，而使用的解释器是python2.7，而python2.7不支持最高版本的pandas，所以需要在使用环境脚本的使用需要增加python2.7下使用的包，即可以在脚本中增加以下语句</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python 2.7 cannot use newest pandas, so need to install 2.7 suport packages</span></span><br><span class="line">sudo apt-get install python-pandas -y   <span class="comment"># add this cmd</span></span><br><span class="line">sudo -H pip install pandas jinja2</span><br></pre></td></tr></table></figure>
