@@ -1,6 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>PX4 simulink 硬件支持包使用</title>
+    <url>/SSSnow.github.io/2020/05/08/PX4-simulink-%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%8C%81%E5%8C%85%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<blockquote>
+<p>江山代有才人出，各领风骚数百年</p>
+</blockquote>
+<p><img src="/SSSnow.github.io/2020/05/08/PX4-simulink-%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%8C%81%E5%8C%85%E4%BD%BF%E7%94%A8/Header.jpg" alt></p>
+<blockquote>
+<p>本问主要记录基于matlab2018b搭建PX4 simulink 硬件支持包的流程。</p>
+</blockquote>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>​    这里主要使用官网提供的方法，利用WSL(windows下liunx子系统)，具体操作步骤直接参考<a href="https://www.mathworks.com/help/supportpkg/px4/setup-and-configuration.html?s_tid=CRUX_lftnav" target="_blank" rel="noopener">官网链接</a>。</p>
+<p>​    在搭建PX4编译环境时，会使用到pandas包，而使用的解释器是python2.7，而python2.7不支持最高版本的pandas，所以需要在使用环境脚本的使用需要增加python2.7下使用的包，即可以在脚本中增加以下语句</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># python 2.7 cannot use newest pandas, so need to install 2.7 suport packages</span></span><br><span class="line">sudo apt-get install python-pandas -y   <span class="comment"># add this cmd</span></span><br><span class="line">sudo -H pip install pandas jinja2</span><br></pre></td></tr></table></figure>
+<h2 id="代码编译"><a href="#代码编译" class="headerlink" title="代码编译"></a>代码编译</h2><p>​    按照官网提示的步骤，在编译代码时会出现 ‘\r’ 无法识别的问题，这是由于在文件在windows下面打开后，会将换行符转成’\r\n’，而在unix下无法识别，所以会报错。</p>
+<p>​    解决办法：在WSL下，启动ubuntu16.04终端，使用以下指令将报错的脚本文件(这里用filename.sh代替)转成unix文件。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install dos2unix -y</span><br><span class="line">dos2unix filename.sh</span><br></pre></td></tr></table></figure>
+<p>​    在官方选择硬件及固件后，验证通过后，会在响应的cmake文件增加一个modules/px4_simulink_app的编译项，而此时还未创建simulink px4 模型，所以这个文件不存在，所以编译同样会失败，这是需要先注释掉这条语句，继续往下编译，编译成功后，方可使用运行px4模块编写的模型，否者会报总线不存在的错误。这里有点绕，有个逻辑死去，所以需要手动解一下。</p>
+<p>第一次编译成功后，再去编译模型还可能遇到找不到bash.exe的问题，这是由于在windows10版本上会区别32位/64位系统的，所以bash.exe的位置可能出现调用错误。解决办法，在MATLAB命令行使用以下语句,具体可以参考<a href="https://www.mathworks.com/help/releases/R2018b/supportpkg/px4/ug/troubleshooting-px4-build-model-windows.html" target="_blank" rel="noopener">链接</a></p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">setpref(<span class="string">'MW_PX4_WSLBuildPath'</span>,<span class="string">'SwitchPath'</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>再次运行模型，成功后就可以看到源码中有了px4_simulink_app这个文件，这时再取消cmake中的注释，再次编译就可以成功运行了。</p>
+]]></content>
+      <categories>
+        <category>Simulink学习</category>
+      </categories>
+      <tags>
+        <tag>simulink硬件支持包</tag>
+        <tag>PX4 Hardware Support Package</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>动态响应和飞行质量分析</title>
+    <url>/SSSnow.github.io/2020/03/18/%E5%8A%A8%E6%80%81%E5%93%8D%E5%BA%94%E5%92%8C%E9%A3%9E%E8%A1%8C%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<blockquote>
+<p>宠辱不惊，闲看庭前花开花落</p>
+<p>去留无意，漫随天外云卷云舒</p>
+</blockquote>
+<p><img src="/SSSnow.github.io/2020/03/18/%E5%8A%A8%E6%80%81%E5%93%8D%E5%BA%94%E5%92%8C%E9%A3%9E%E8%A1%8C%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/header.jpg" alt></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    本文主要以<code>MathWorks</code>官方提供的飞行器动态及飞行质量分析的例子作为主要分析对象，来梳理关于飞行器动态及质量分析的工作流，以及评判标准。</p>
+<a id="more"></a>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>​    官方提供了两种实时分析脚本</p>
+<ul>
+<li><a href="matlab:open(&#39;DehavillandBeaverFlyingQualityAnalysis&#39;">DehavillandBeaverFlyingQualityAnalysis</a>)：计算 <code>Dehavilland Beaver</code> 水陆两栖滑翔机类型的机身的纵向和横向飞行品质。<ul>
+<li><a href="matlab:open(&#39;SkyHoggLongitudinalFlyingQualityAnalysis&#39;">SkyHoggLongitudinalFlyingQualityAnalysis</a>) ：计算 <code>Sky Hogg</code> 机身的纵向飞行品质.</li>
+</ul>
+</li>
+</ul>
+<p>以及<code>3DOF&amp;6DOF</code>的<code>Simulink</code>模型版本的分析。</p>
+<ul>
+<li><a href="matlab:asbFlightControlAnalysis(&#39;6DOF&#39;," title="flightControl6DOFAirframeTemplate">flightControl6DOFAirframeTemplate</a>)：这个模板使用一个六自由度的机身进行线性化和质量分析。 初始化时，模板使用 <code>DeHavilland Beaver</code> 机身参数.</li>
+<li><a href="matlab:asbFlightControlAnalysis(&#39;3DOF&#39;," title="flightControl3DOFAirframeTemplate">flightControl3DOFAirframeTemplate</a>):这个模板使用一个3自由度纵向机身进行线性化和质量分析。 对于初始化，模板使用 <code>Sky Hogg</code> 机身参数。</li>
+</ul>
+<h2 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h2><p>​    在这里我们打开一个6DOF的模型模板进行解析。</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">asbFlightControlAnalysis(<span class="string">'6DOF'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/SSSnow.github.io/2020/03/18/%E5%8A%A8%E6%80%81%E5%93%8D%E5%BA%94%E5%92%8C%E9%A3%9E%E8%A1%8C%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/flightanalysis_3dof.gif" alt></p>
+<p>在分析模板中，给出了一个可点击的引导工作流程，来计算横纵向飞行品质，并于MIL-F-8785C(美国空军有人驾驶飞机飞行品质规范)规范进行比较。要执行飞行品质分析，一般有如下步骤。</p>
+<ul>
+<li>使用<code>Linear Analysis Trim</code>工具对机身模型创建一个操做点规范对象在基础工作空间中。</li>
+<li>修剪机身模型。</li>
+<li>线性化处理</li>
+<li>计算操作品质</li>
+</ul>
+<p>下面来详述以下细节。</p>
+<ul>
+<li>怎么创建操作点规范对象？<ul>
+<li>使用operation trim</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Simulink学习</category>
+      </categories>
+      <tags>
+        <tag>MATLAB2018b</tag>
+        <tag>飞行器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>控制系统设计</title>
+    <url>/SSSnow.github.io/2020/03/14/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<blockquote>
+<p>不管前方的路有多苦，只要走的方向正确</p>
+<p>不管多么的崎岖不平，都比站在原点更接近幸福</p>
+</blockquote>
+<p><img src="/SSSnow.github.io/2020/03/14/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/header.jpg" alt></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>​    本文主要记录使用 Control System Design工具进行SISO回路的分析，伯德图的使用，零极点的配置等。</p>
+<a id="more"></a>
+<h2 id="工具介绍"><a href="#工具介绍" class="headerlink" title="工具介绍"></a>工具介绍</h2><p>​    <strong>Control System Designer</strong> 用于单输入单输出(<strong>SISO</strong>)系统的反馈控制器设计。这个工具有以下方式用于控制调节。</p>
+<ul>
+<li>交互式伯德图，根轨迹等图形编辑器，可以通过增加删除零极点来调节控制系统<ul>
+<li>进行PID、LQG、IMC等控制器的自动调节</li>
+<li>基于优化的调节，需要结合<strong>Simulink Design Optimization</strong> 工具。</li>
+<li>自动环路设计，需要Robust Control工具。</li>
+</ul>
+</li>
+</ul>
+<h3 id="调节方法"><a href="#调节方法" class="headerlink" title="调节方法"></a>调节方法</h3><ul>
+<li>Bode Editor<ul>
+<li>伯德图编辑器，通过调节补偿器来实现一个特定的开环频率响应。</li>
+<li>调整开环带宽，设计增益和相位裕度指标。</li>
+</ul>
+</li>
+<li>Closed-Loop Bode Editor<ul>
+<li>闭环伯德图编辑器，调整预滤波器来改善闭环系统的响应。</li>
+<li>改进基准跟踪、输入干扰抑制和噪声抑制</li>
+</ul>
+</li>
+<li>Root Locus Editor<ul>
+<li>根轨迹编辑器，调整补偿器，以产生闭环极点位置，满足您的设计规格</li>
+<li>设计时域设计规范，如最大超调和稳定时间</li>
+</ul>
+</li>
+<li>Nichols Editor<ul>
+<li>尼克斯编辑器，调整补偿器，以实现具体的开环响应，结合增益和相位信息在尼克斯图中。</li>
+<li>调整开环带宽，设计增益和相位裕度指标</li>
+</ul>
+</li>
+</ul>
+<h2 id="伯德图控制器设计"><a href="#伯德图控制器设计" class="headerlink" title="伯德图控制器设计"></a>伯德图控制器设计</h2><pre><code> 首先打开一个`simulink`模型，在`simulink`编辑器中,选择`Analysis -&gt; Control Design -&gt; Control System Designer... `打开控制器设计工具。
+</code></pre><ul>
+<li>选择一个想要去编辑块来调节控制系统，一般是模型中的控制器。</li>
+<li>选择调节方法，来调节控制系统，在控制系统设计器编辑窗口选择<code>Tuning Methods-&gt;Bode Editor</code>,打开伯德图编辑器，打开后选择对应的开环输出响应块。</li>
+<li>打开伯德图编辑块后，再打开一个阶跃响应图来观察阶跃响应的结果。</li>
+<li>开始调整伯德图，来调整控制器<ul>
+<li>调节幅值穿越频率满足响应时间，上下拖动增益曲线来调整带宽。</li>
+<li>给补偿器增加积分环节，来消除稳态误差。</li>
+<li>再次调节带宽来满足响应时间。</li>
+<li>如果发现超调了，那么需要额外的补偿器来保证足够的稳定性。</li>
+<li>在幅值穿越频率处给补偿器增加超前补偿器来增加阻尼，提升增益裕度和相位裕度。</li>
+</ul>
+</li>
+</ul>
+<p>​    </p>
+<p>​    </p>
+]]></content>
+      <categories>
+        <category>Simulink学习</category>
+      </categories>
+      <tags>
+        <tag>MATLAB2018b</tag>
+        <tag>控制器设计</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>深入学习bode图的使用</title>
     <url>/SSSnow.github.io/2020/03/12/%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0bode%E5%9B%BE%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<blockquote>

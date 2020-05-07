@@ -123,7 +123,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/SSSnow.github.io/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">13</span></a>
+    <a href="/SSSnow.github.io/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">17</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -133,7 +133,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/SSSnow.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">9</span></a>
+    <a href="/SSSnow.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">12</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -187,6 +187,358 @@
             
 
   <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sssnow.github.io/2020/05/08/PX4-simulink-%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%8C%81%E5%8C%85%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/SSSnow.github.io/uploads/avatar.jpg">
+      <meta itemprop="name" content="Snow Pang">
+      <meta itemprop="description" content="学习笔记，工作心得，事业感悟，生活随笔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="古月的江湖">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/SSSnow.github.io/2020/05/08/PX4-simulink-%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%8C%81%E5%8C%85%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">PX4 simulink 硬件支持包使用</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-08 00:08:18" itemprop="dateCreated datePublished" datetime="2020-05-08T00:08:18+08:00">2020-05-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/SSSnow.github.io/categories/Simulink%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">Simulink学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/SSSnow.github.io/2020/05/08/PX4-simulink-%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%8C%81%E5%8C%85%E4%BD%BF%E7%94%A8/" class="post-meta-item leancloud_visitors" data-flag-title="PX4 simulink 硬件支持包使用" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/SSSnow.github.io/2020/05/08/PX4-simulink-%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%8C%81%E5%8C%85%E4%BD%BF%E7%94%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/SSSnow.github.io/2020/05/08/PX4-simulink-%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%8C%81%E5%8C%85%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>992</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>江山代有才人出，各领风骚数百年</p>
+</blockquote>
+<p><img src="/SSSnow.github.io/2020/05/08/PX4-simulink-%E7%A1%AC%E4%BB%B6%E6%94%AF%E6%8C%81%E5%8C%85%E4%BD%BF%E7%94%A8/Header.jpg" alt></p>
+<blockquote>
+<p>本问主要记录基于matlab2018b搭建PX4 simulink 硬件支持包的流程。</p>
+</blockquote>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>​    这里主要使用官网提供的方法，利用WSL(windows下liunx子系统)，具体操作步骤直接参考<a href="https://www.mathworks.com/help/supportpkg/px4/setup-and-configuration.html?s_tid=CRUX_lftnav" target="_blank" rel="noopener">官网链接</a>。</p>
+<p>​    在搭建PX4编译环境时，会使用到pandas包，而使用的解释器是python2.7，而python2.7不支持最高版本的pandas，所以需要在使用环境脚本的使用需要增加python2.7下使用的包，即可以在脚本中增加以下语句</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python 2.7 cannot use newest pandas, so need to install 2.7 suport packages</span></span><br><span class="line">sudo apt-get install python-pandas -y   <span class="comment"># add this cmd</span></span><br><span class="line">sudo -H pip install pandas jinja2</span><br></pre></td></tr></table></figure>
+<h2 id="代码编译"><a href="#代码编译" class="headerlink" title="代码编译"></a>代码编译</h2><p>​    按照官网提示的步骤，在编译代码时会出现 ‘\r’ 无法识别的问题，这是由于在文件在windows下面打开后，会将换行符转成’\r\n’，而在unix下无法识别，所以会报错。</p>
+<p>​    解决办法：在WSL下，启动ubuntu16.04终端，使用以下指令将报错的脚本文件(这里用filename.sh代替)转成unix文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install dos2unix -y</span><br><span class="line">dos2unix filename.sh</span><br></pre></td></tr></table></figure>
+<p>​    在官方选择硬件及固件后，验证通过后，会在响应的cmake文件增加一个modules/px4_simulink_app的编译项，而此时还未创建simulink px4 模型，所以这个文件不存在，所以编译同样会失败，这是需要先注释掉这条语句，继续往下编译，编译成功后，方可使用运行px4模块编写的模型，否者会报总线不存在的错误。这里有点绕，有个逻辑死去，所以需要手动解一下。</p>
+<p>第一次编译成功后，再去编译模型还可能遇到找不到bash.exe的问题，这是由于在windows10版本上会区别32位/64位系统的，所以bash.exe的位置可能出现调用错误。解决办法，在MATLAB命令行使用以下语句,具体可以参考<a href="https://www.mathworks.com/help/releases/R2018b/supportpkg/px4/ug/troubleshooting-px4-build-model-windows.html" target="_blank" rel="noopener">链接</a></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setpref(<span class="string">'MW_PX4_WSLBuildPath'</span>,<span class="string">'SwitchPath'</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>再次运行模型，成功后就可以看到源码中有了px4_simulink_app这个文件，这时再取消cmake中的注释，再次编译就可以成功运行了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sssnow.github.io/2020/03/18/%E5%8A%A8%E6%80%81%E5%93%8D%E5%BA%94%E5%92%8C%E9%A3%9E%E8%A1%8C%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/SSSnow.github.io/uploads/avatar.jpg">
+      <meta itemprop="name" content="Snow Pang">
+      <meta itemprop="description" content="学习笔记，工作心得，事业感悟，生活随笔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="古月的江湖">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/SSSnow.github.io/2020/03/18/%E5%8A%A8%E6%80%81%E5%93%8D%E5%BA%94%E5%92%8C%E9%A3%9E%E8%A1%8C%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">动态响应和飞行质量分析</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-18 09:16:48" itemprop="dateCreated datePublished" datetime="2020-03-18T09:16:48+08:00">2020-03-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/SSSnow.github.io/categories/Simulink%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">Simulink学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/SSSnow.github.io/2020/03/18/%E5%8A%A8%E6%80%81%E5%93%8D%E5%BA%94%E5%92%8C%E9%A3%9E%E8%A1%8C%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/" class="post-meta-item leancloud_visitors" data-flag-title="动态响应和飞行质量分析" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/SSSnow.github.io/2020/03/18/%E5%8A%A8%E6%80%81%E5%93%8D%E5%BA%94%E5%92%8C%E9%A3%9E%E8%A1%8C%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/SSSnow.github.io/2020/03/18/%E5%8A%A8%E6%80%81%E5%93%8D%E5%BA%94%E5%92%8C%E9%A3%9E%E8%A1%8C%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>718</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>宠辱不惊，闲看庭前花开花落</p>
+<p>去留无意，漫随天外云卷云舒</p>
+</blockquote>
+<p><img src="/SSSnow.github.io/2020/03/18/%E5%8A%A8%E6%80%81%E5%93%8D%E5%BA%94%E5%92%8C%E9%A3%9E%E8%A1%8C%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/header.jpg" alt></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    本文主要以<code>MathWorks</code>官方提供的飞行器动态及飞行质量分析的例子作为主要分析对象，来梳理关于飞行器动态及质量分析的工作流，以及评判标准。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/SSSnow.github.io/2020/03/18/%E5%8A%A8%E6%80%81%E5%93%8D%E5%BA%94%E5%92%8C%E9%A3%9E%E8%A1%8C%E8%B4%A8%E9%87%8F%E5%88%86%E6%9E%90/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sssnow.github.io/2020/03/14/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/SSSnow.github.io/uploads/avatar.jpg">
+      <meta itemprop="name" content="Snow Pang">
+      <meta itemprop="description" content="学习笔记，工作心得，事业感悟，生活随笔">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="古月的江湖">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/SSSnow.github.io/2020/03/14/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" class="post-title-link" itemprop="url">控制系统设计</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-14 17:18:07" itemprop="dateCreated datePublished" datetime="2020-03-14T17:18:07+08:00">2020-03-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/SSSnow.github.io/categories/Simulink%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">Simulink学习</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/SSSnow.github.io/2020/03/14/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" class="post-meta-item leancloud_visitors" data-flag-title="控制系统设计" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/SSSnow.github.io/2020/03/14/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/SSSnow.github.io/2020/03/14/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>949</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>不管前方的路有多苦，只要走的方向正确</p>
+<p>不管多么的崎岖不平，都比站在原点更接近幸福</p>
+</blockquote>
+<p><img src="/SSSnow.github.io/2020/03/14/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/header.jpg" alt></p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>​    本文主要记录使用 Control System Design工具进行SISO回路的分析，伯德图的使用，零极点的配置等。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/SSSnow.github.io/2020/03/14/%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
         
   
   
@@ -997,225 +1349,12 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sssnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/SSSnow.github.io/uploads/avatar.jpg">
-      <meta itemprop="name" content="Snow Pang">
-      <meta itemprop="description" content="学习笔记，工作心得，事业感悟，生活随笔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="古月的江湖">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/" class="post-title-link" itemprop="url">谈谈航空认证标准(Ⅰ)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-11 13:07:57" itemprop="dateCreated datePublished" datetime="2020-02-11T13:07:57+08:00">2020-02-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/SSSnow.github.io/categories/%E8%88%AA%E7%A9%BA%E8%88%AA%E5%A4%A9/" itemprop="url" rel="index">
-                    <span itemprop="name">航空航天</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/" class="post-meta-item leancloud_visitors" data-flag-title="谈谈航空认证标准(Ⅰ)" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>谁看见过风？我和你，都不曾看见过。但是当树叶颤动之时，就代表风正吹拂而过。风啊，请展开羽翼，将它送达你的身边!</p>
-</blockquote>
-<p><img src="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/header.jpg" alt></p>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>​    这里主要讨论DO-178B, DO-254标准，解释其背景，意义，以及是怎么工作的。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/SSSnow.github.io/2020/02/11/%E8%B0%88%E8%B0%88%E8%88%AA%E7%A9%BA%E8%AE%A4%E8%AF%81%E6%A0%87%E5%87%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://sssnow.github.io/2020/02/10/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/SSSnow.github.io/uploads/avatar.jpg">
-      <meta itemprop="name" content="Snow Pang">
-      <meta itemprop="description" content="学习笔记，工作心得，事业感悟，生活随笔">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="古月的江湖">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/SSSnow.github.io/2020/02/10/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-10 04:45:27" itemprop="dateCreated datePublished" datetime="2020-02-10T04:45:27+08:00">2020-02-10</time>
-            </span>
-
-          
-            <span id="/SSSnow.github.io/2020/02/10/hello-world/" class="post-meta-item leancloud_visitors" data-flag-title="Hello World" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/SSSnow.github.io/2020/02/10/hello-world/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/SSSnow.github.io/2020/02/10/hello-world/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>357</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/SSSnow.github.io/page/2/">2</a><a class="extend next" rel="next" href="/SSSnow.github.io/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1282,7 +1421,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/SSSnow.github.io/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1295,7 +1434,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/SSSnow.github.io/tags/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1338,13 +1477,13 @@
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">13k</span>
+    <span title="站点总字数">15k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">12 分钟</span>
+    <span title="站点阅读时长">14 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
